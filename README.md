@@ -26,6 +26,9 @@ if I determine that a word is still recognizable without its first or last one o
 This approach allows for minor typos while maintaining clarity, though it may not cover every possibility—it's a step toward improvement nonetheless.
 
 *you can cancel db functionality changing the env var "IS_USING_MONGO_DB" to anything else but 'using mongo db'
+*I use Lunes Hosting and highly recommend it.
+
+
 
 todo:
     more testing
@@ -35,3 +38,10 @@ todo:
 
 אם חיפשתם בוט סביר לשרת שלכם ללא מאמץ, אתם מזומנים להשתמש בקוד הזה, יש פה גם פקודות בעברית וגם באנגלית, והקוד קל להבנה, כך שתוכלו להוסיף בקלות
 כל מה שאתם רוצים! 
+
+
+
+<br>
+<br>
+<br>
+hebrew discord bot hebrew bot discord hebrew and english discord bot בוט לדיסקורד בעברית בוט בעברית לדיסקורד בוט בעברית לדיס בוט לדיס בעברית בוט לדיסקורד בוט מוכן לדיסקורד הבוט של יב9
