@@ -3,7 +3,8 @@
 yudbeit9Bot
 
 
-
+## - keywords tree based answers for minimal response time </br>- db functionality </br>- conversational</br>- hebrew and english</br>- easy to deploy & start using
+  
 This is a bot that supports both English and Hebrew commands. You can ask it for the time, weather updates, stories,
 jokes, create lists of ideas and notes (stored with mongo db) and similar things. It's also designed to hold conversations, responding to a wide range of situations.
 The bot doesn’t have a traditional menu (except the db functionality , you can see menu by saying "bot db menu"),
@@ -21,9 +22,7 @@ when talking to the bot, so the system can better handle natural language.
 
 The input is first converted to lowercase and all regex are removed before generating answer.
 
-If you encounter incomplete words in the code, this may be the reason: when searching for words,
-if I determine that a word is still recognizable without its first or last one or two letters, I search for it without those letters. 
-This approach allows for minor typos while maintaining clarity, though it may not cover every possibility—it's a step toward improvement nonetheless.
+### If you encounter incomplete words in the code, this may be the reason: when searching for words,</br>if I determine that a word is still recognizable without its first or last one or two letters, I search for it without those letters. This approach allows for minor typos while maintaining clarity, though it may not cover every possibility—it's a step toward improvement nonetheless.
 
 *you can cancel db functionality changing the env var "IS_USING_MONGO_DB" to anything else but 'using mongo db'
 *I use Lunes Hosting and highly recommend it.
