@@ -14,7 +14,7 @@ def mock_collections():
 
 # Test case for the db_commands function - "create list"
 def test_create_list(mock_collections):
-    result = db_commands("bot create list myList", "user1")
+    result = db_commands("bot crete list myList", "user1")
     assert not result.startswith("Error"), f"Error: {result}"
 
 
