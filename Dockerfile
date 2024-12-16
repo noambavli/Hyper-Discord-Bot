@@ -1,14 +1,4 @@
-FROM python:3.12-slim
-
-# Set the working directory
-WORKDIR ./
-
-# Install dependencies
+FROM python:3.8-slim
+WORKDIR /app
 COPY requirements.txt ./
-RUN pip install -r requirements.txt
-
-# Copy bot code
-COPY . .
-
-# Run the bot
-CMD ["python3", "main.py"]
+RUN pip install --no-cache-dir -r requirements.txt
