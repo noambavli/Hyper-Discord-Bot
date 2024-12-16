@@ -37,3 +37,4 @@ jobs:
     - name: Deploy to Railway
       run: |
         railway up  # Deploy the project to Railway (Railway automatically builds and deploys)
+
