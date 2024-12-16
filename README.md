@@ -24,10 +24,7 @@ The input is first converted to lowercase and all regex are removed before gener
 
 ### If you encounter incomplete words in the code, this may be the reason: when searching for words,</br>if I determine that a word is still recognizable without its first or last one or two letters, I search for it without those letters. This approach allows for minor typos while maintaining clarity, though it may not cover every possibility—it's a step toward improvement nonetheless.
 
-*you can cancel db functionality changing the env var "IS_USING_MONGO_DB" to anything else but 'using mongo db'
-*I use Lunes Hosting and highly recommend it.
-
-
+#### I use Railway.app & docker and highly recommend it.</br>you can cancel db functionality changing the env var "IS_USING_MONGO_DB" to anything else but 'using mongo db'
 
 todo:
     more testing
