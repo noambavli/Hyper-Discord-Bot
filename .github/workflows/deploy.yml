@@ -26,7 +26,7 @@ jobs:
         pytest --maxfail=1 --disable-warnings -q
 
   deploy:
-    needs: test
+    needs: tests
     runs-on: ubuntu-latest
     if: success()  # Only runs if the 'test' job is successful
 
