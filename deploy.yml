@@ -1,0 +1,39 @@
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest --maxfail=1 --disable-warnings -q
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: success()  # Only runs if the 'test' job is successful
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to Railway
+      run: |
+        railway up  # Deploy the project to Railway (Railway automatically builds and deploys)

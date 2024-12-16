@@ -212,25 +212,24 @@ def weather_answers():
     geocoding_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city}"
     geocoding_response = requests.get(geocoding_url)
 
-    if geocoding_response.status_code == 200:
-        location_data = geocoding_response.json()
-        if location_data['results']:
-            params['latitude'] = location_data['results'][0]['latitude']
-            params['longitude'] = location_data['results'][0]['longitude']
-
-            weather_response = requests.get(url, params=params)
-            if weather_response.status_code == 200:
-                weather_data = weather_response.json()
-                current_weather = weather_data['current_weather']
-
-                weather = f"Location: {city} Temperature: {current_weather['temperature']}"
-                return weather
-            else:
-                return "Could not retrieve weather data."
-        else:
-            return "City not found."
-    else:
+    if geocoding_response.status_code != 200:
         return "Could not retrieve location data."
+    location_data = geocoding_response.json()
+    if not location_data['results']:
+        return "City not found."
+    params['latitude'] = location_data['results'][0]['latitude']
+    params['longitude'] = location_data['results'][0]['longitude']
+    weather_response = requests.get(url, params=params)
+    if weather_response.status_code != 200:
+        return "Could not retrieve weather data."
+    weather_data = weather_response.json()
+    if not weather_data['current_weather']:
+        return "Could not retrieve weather data."
+    current_weather = weather_data['current_weather']
+    weather = f"Location: {city} Temperature: {current_weather['temperature']}"
+    return weather
+
+
 
 def who_answers(user_msg):
     if 'who created you' in user_msg:
