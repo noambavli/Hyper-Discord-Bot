@@ -10,13 +10,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      run: echo "Repository checked out successfully."
+    - run: echo "Repository checked out successfully."
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-      run: echo "Python 3.9 set up successfully."
+    - run: echo "Python 3.9 set up successfully."
 
     - name: Install dependencies
       run: |
@@ -38,7 +38,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      run: echo "Repository checked out successfully for deployment."
+    - run: echo "Repository checked out successfully for deployment."
 
     - name: Deploy to Railway
       run: |
