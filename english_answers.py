@@ -158,7 +158,7 @@ def general_answers(user_msg, username):
 
     if 'weather' in user_msg:
         answer = weather_commands.weather_command_answer(user_msg)
-        if answer:
+        if answer and not answer.startswith("Error"):
             return answer
         elif user_msg == "what is the weather" or user_msg == "whats the weather":
             return "Ask the same question, but with the city name"
