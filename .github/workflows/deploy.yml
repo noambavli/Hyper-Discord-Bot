@@ -24,6 +24,8 @@ jobs:
         echo "Dependencies installed."
 
     - name: Run tests
+      env:
+        MONGO_URL: ${{ secrets.MONGO_URL }}  # Access the secret securely
       run: |
         echo "Running tests..."
         pytest --maxfail=2 --disable-warnings -q
