@@ -40,5 +40,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - run: echo "Repository checked out successfully for deployment."
-
+    
+    - name: Deploy to Railway
+      run: |
+        echo "Starting deployment to Railway..."
+        railway up  # Deploy the project to Railway (Railway automatically builds and deploys)
+        echo "Deployment to Railway completed."
 
