@@ -1,9 +1,11 @@
 
+## Because I accidentally committed the MongoDB URL, I replaced it.</br>Don't bother trying to use it.</br>both git rm --cached and git filter-branch aren't working for me for some reason right now, I know they can help
+
 
 yudbeit9Bot
 
 
-## - keywords tree based answers for minimal response time </br>- db functionality </br>- conversational</br>- hebrew and english</br>- easy to deploy & start using
+## - keywords tree based answers for minimal response time </br>- conversational</br>- hebrew and english</br>- db functionality </br>- easy to deploy & start using
   
 This is a bot that supports both English and Hebrew commands. You can ask it for the time, weather updates, stories,
 jokes, create lists of ideas and notes (stored with mongo db) and similar things. It's also designed to hold conversations, responding to a wide range of situations.

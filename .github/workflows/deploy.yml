@@ -1,9 +1,7 @@
-
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
-
+      - master  
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,30 +9,36 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    - run: echo "Repository checked out successfully."
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+    - run: echo "Python 3.9 set up successfully."
 
     - name: Install dependencies
       run: |
+        echo "Installing dependencies..."
         pip install -r requirements.txt
+        echo "Dependencies installed."
 
     - name: Run tests
+      env:
+        MONGO_URL: ${{ secrets.MONGO_URL }}  # Access the secret securely
       run: |
-        pytest --maxfail=1 --disable-warnings -q
+        echo "Running tests..."
+        pytest --maxfail=2 --disable-warnings -q
+        echo "Tests completed."
 
   deploy:
-    needs: tests
+    needs: test
     runs-on: ubuntu-latest
     if: success()  # Only runs if the 'test' job is successful
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    - run: echo "Repository checked out successfully for deployment."
 
-    - name: Deploy to Railway
-      run: |
-        railway up  # Deploy the project to Railway (Railway automatically builds and deploys)
 
