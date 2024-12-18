@@ -23,7 +23,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest 
+        pytest --maxfail=0 --disable-warnings -q
 
   deploy:
     needs: tests
