@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master  # Trigger on push to the main branch
+      - master  
 jobs:
   test:
     runs-on: ubuntu-latest
