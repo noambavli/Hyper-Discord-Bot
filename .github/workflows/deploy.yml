@@ -1,4 +1,3 @@
-
 on:
   push:
     branches:
@@ -11,30 +10,38 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      run: echo "Repository checked out successfully."
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+      run: echo "Python 3.9 set up successfully."
 
     - name: Install dependencies
       run: |
+        echo "Installing dependencies..."
         pip install -r requirements.txt
+        echo "Dependencies installed."
 
     - name: Run tests
       run: |
+        echo "Running tests..."
         pytest
+        echo "Tests completed."
 
   deploy:
-    needs: tests
+    needs: test
     runs-on: ubuntu-latest
     if: success()  # Only runs if the 'test' job is successful
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      run: echo "Repository checked out successfully for deployment."
 
     - name: Deploy to Railway
       run: |
+        echo "Starting deployment to Railway..."
         railway up  # Deploy the project to Railway (Railway automatically builds and deploys)
-
+        echo "Deployment to Railway completed."
