@@ -30,7 +30,7 @@ jobs:
         echo "Tests completed."
 
   deploy:
-    needs: tests
+    needs: test
     runs-on: ubuntu-latest
     if: success()  # Only runs if the 'test' job is successful
 
