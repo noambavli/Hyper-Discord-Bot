@@ -237,7 +237,7 @@ def unobsessed(username):
             {'$pull': {'users': user}}
         )
 
-        if result.modified_count > 0:
+        if int(result.modified_count) > 0:
             return f"Removed '{user}' from obsessives."
         else:
             return f"'{user}' was not found in the obsessives."
@@ -248,9 +248,12 @@ def obsessives():
     try:
         obsessives_doc = obsessives_collection.find_one({'obsessed_with': 'bot'})
         if obsessives_doc:
-            users = ", ".join(obsessives_doc['users'])
+
+            users = ", ".join(list(obsessives_doc['users']))
             return f"Obsessives: {users}"
         else:
             return "No one is obsessed with me yet."
     except Exception as e:
         return f"Error: {e}"
+
+

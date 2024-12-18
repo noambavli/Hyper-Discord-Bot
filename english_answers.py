@@ -18,7 +18,7 @@ def english_answers(user_msg, username):
     if using_mongo_db == 'using mongo db':
         if 'bot' in user_msg and any(word in user_msg for word in ['db menu','obsessed','list','bot create', 'bot show','bot delete', 'bot add']):
             answer = db_user_commands.db_commands(user_msg,username)
-            if answer:
+            if answer and not answer.startswith("Error"):
                 return answer
 
 
