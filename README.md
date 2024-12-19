@@ -30,7 +30,8 @@ The input is first converted to lowercase and all regex are removed before gener
 
 todo:
     more testing
-    add more responses to more situations
+    add more responses for more situations
+    , suggestions: 'help me with x"
 
 
 
