@@ -128,8 +128,8 @@ def general_answers(user_msg,username):
     if any(question in user_msg for question in ['היי', 'הלו','שלום','היוש']):
         return choice( ['היי', 'הלו','שלום','היוש'])+' '+ username
 
-    if 'מזג אוויר' in user_msg or 'מזג האוויר' in user_msg:
-        answer = weather_answers()
+    if 'מזג אוויר ב' in user_msg or 'מזג האוויר ב' in user_msg:
+        answer = "אפשר לשאול אותי באנגלית למזג האוויר"
         if answer:
             return answer
 
