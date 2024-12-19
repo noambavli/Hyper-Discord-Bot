@@ -23,6 +23,12 @@ def english_answers(user_msg, username):
                 return answer
 
 
+
+    if user_msg == "bot menu": 
+        answer = "i don't have menu, just talk with me!, the only menu is for storing stuff, for this type bot db menu"
+        if answer:
+            return answer
+            
     if 'bot' in user_msg:
         answer = general_words_related_to_bot_answers(user_msg)
         if answer:
