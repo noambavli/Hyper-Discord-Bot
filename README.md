@@ -32,7 +32,8 @@ The input is first converted to lowercase and all regex are removed before gener
 todo:
     more testing
     add more responses for more situations
-    , suggestions: 'help me with x"
+    , suggestions: 'help me with x", random private and public messages to users in the servers the bot is a part of.
+
 
 
 
