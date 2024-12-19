@@ -7,7 +7,8 @@ yudbeit9Bot
 
 ## - keywords tree based answers for minimal response time </br>- conversational</br>- hebrew and english</br>- db functionality </br>- easy to deploy & start using
   
-This is a bot that supports both English and Hebrew commands. You can ask it for the time, weather updates, stories,
+This is a bot that supports both English and Hebrew commands (<b> you can simply cancle the hebrew functionality in the responses.py middleware </b>). <br>
+You can ask it for the time, weather updates, stories,
 jokes, create lists of ideas and notes (stored with mongo db) and similar things. It's also designed to hold conversations, responding to a wide range of situations.
 The bot doesn’t have a traditional menu (except the db functionality , you can see menu by saying "bot db menu"),
 as it's mainly focused on conversational interaction.
@@ -43,4 +44,16 @@ todo:
 <br>
 <br>
 <br>
-hebrew discord bot hebrew bot discord hebrew and english discord bot בוט לדיסקורד בעברית בוט בעברית לדיסקורד בוט בעברית לדיס בוט לדיס בעברית בוט לדיסקורד בוט מוכן לדיסקורד הבוט של יב9
+#### Tags
+
+- Hebrew Discord Bot  
+- Hebrew Bot  
+- Discord  
+- Hebrew and English Discord Bot  
+- בוט לדיסקורד בעברית  
+- בוט בעברית לדיסקורד  
+- בוט בעברית לדיס  
+- בוט לדיס בעברית  
+- בוט לדיסקורד  
+- בוט מוכן לדיסקורד  
+- הבוט של יב9
