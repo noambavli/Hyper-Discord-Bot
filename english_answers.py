@@ -25,7 +25,7 @@ def english_answers(user_msg, username):
 
 
     if user_msg == "bot menu": 
-        answer = "i don't have menu, just talk with me!, the only menu is for storing stuff, for this type bot db menu"
+        answer = "I don't have a menu—just talk to me! The only menu available is for storing stuff. To use it, type bot db menu"
         if answer:
             return answer
             
