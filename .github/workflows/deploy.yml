@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: '3.9'
     - run: echo "Python 3.9 set up successfully."
-
+            
     - name: Install dependencies
       run: |
         echo "Installing dependencies..."
@@ -30,7 +30,10 @@ jobs:
         echo "Running tests..."
         pytest --maxfail=2 --disable-warnings -q
         echo "Tests completed."
-
+        
+    - name: generate-sitemap
+      uses: cicirello/generate-sitemap@v1.10.1
+      
   deploy:
     needs: test
     runs-on: ubuntu-latest
