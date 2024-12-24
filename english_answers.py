@@ -87,16 +87,15 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    answer = general_answers(user_msg, username)
-    if answer:
-        return answer
-
-
     if "help" in user_msg:
         answer = help_answers(user_msg)
         if answer:
             return answer
 
+
+    answer = general_answers(user_msg, username)
+    if answer:
+        return answer
 
     # If no fitting answer is found but the user message still includes 'bot'
     if 'bot' in user_msg:
