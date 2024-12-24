@@ -91,6 +91,12 @@ def english_answers(user_msg, username):
     if answer:
         return answer
 
+    if "help" in user_msg:
+        answer = help_answers(user_msg)
+        if answer:
+            return answer
+
+
     # If no fitting answer is found but the user message still includes 'bot'
     if 'bot' in user_msg:
         return choice(['Ask a question or be more specific', 'Did you call me?'])
@@ -145,9 +151,6 @@ def general_words_related_to_bot_answers(user_msg):
 
     if 'thanks' in user_msg:
         return "you're welcome"
-
-    if "help" in user_msg:
-        help_answers(user_msg)
 
     if 'bot' == user_msg:
         return "what"
