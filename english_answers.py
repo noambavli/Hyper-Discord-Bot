@@ -1,3 +1,6 @@
+import os
+import random
+import re
 from random import choice
 from datetime import datetime
 import requests
@@ -13,15 +16,15 @@ city = getenv('CITY')
 
 
 def english_answers(user_msg, username):
-
     answer = None
 
     if using_mongo_db == 'using mongo db':
-        if 'bot' in user_msg and any(word in user_msg for word in ['db menu','obsessed','list','bot create', 'bot show','bot delete', 'bot add']):
-            answer = db_user_commands.db_commands(user_msg,username)
+        if 'bot' in user_msg and any(word in user_msg for word in
+                                     ['db menu', 'obsessed', 'list', 'bot create', 'bot show', 'bot delete',
+                                      'bot add']):
+            answer = db_user_commands.db_commands(user_msg, username)
             if answer and not answer.startswith("Error"):
                 return answer
-
 
     if 'bot' in user_msg:
         answer = general_words_related_to_bot_answers(user_msg)
@@ -38,7 +41,7 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    if 'who' in user_msg :
+    if 'who' in user_msg:
         answer = who_answers(user_msg)
         if answer:
             return answer
@@ -48,7 +51,7 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    if 'i' in user_msg  : #for db special obsessed command:
+    if 'i' in user_msg:  # for db special obsessed command:
         answer = i_answers(user_msg)
         if answer:
             return answer
@@ -73,7 +76,7 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    if 'should i' in user_msg or 'what should' in user_msg :
+    if 'should i' in user_msg or 'what should' in user_msg:
 
         if 'should i' in user_msg:
             answer = choose_random_option(user_msg, 'should i')
@@ -94,11 +97,12 @@ def english_answers(user_msg, username):
 
     return None
 
-#general common words that the bot will answer to only if the word 'bot' is mentioned
-def general_words_related_to_bot_answers(user_msg):
 
-    if any(question in user_msg for question in ['what about you', 'how are you','hru', 'how r u' ]):
-        return choice(['All good, how about you?', 'Okay, how are you?', 'Fine, how about you?', 'I’m fine, how about you?'])
+# general common words that the bot will answer to only if the word 'bot' is mentioned
+def general_words_related_to_bot_answers(user_msg):
+    if any(question in user_msg for question in ['what about you', 'how are you', 'hru', 'how r u']):
+        return choice(
+            ['All good, how about you?', 'Okay, how are you?', 'Fine, how about you?', 'I’m fine, how about you?'])
 
     if 'your name' in user_msg:
         return f'my name is {bot_name} !'
@@ -142,13 +146,16 @@ def general_words_related_to_bot_answers(user_msg):
     if 'thanks' in user_msg:
         return "you're welcome"
 
+    if "help" in user_msg:
+        help_answers(user_msg)
+
     if 'bot' == user_msg:
         return "what"
 
     return None
 
-def general_answers(user_msg, username):
 
+def general_answers(user_msg, username):
     if any(greeting in user_msg for greeting in ['hi', 'hello', 'greetings', 'hey']):
         return choice(['hi', 'hello', 'greetings', 'hey']) + ' ' + username
 
@@ -164,7 +171,7 @@ def general_answers(user_msg, username):
             return "Ask the same question, but with the city name"
 
     if 'bye' in user_msg:
-            return 'bye'
+        return 'bye'
 
     if 'great' in user_msg:
         return 'Okay.'
@@ -199,9 +206,7 @@ def general_answers(user_msg, username):
     if 'bot' == user_msg:
         return 'Enough, ' + username
 
-
     return None
-
 
 
 def who_answers(user_msg):
@@ -219,24 +224,36 @@ def who_answers(user_msg):
 
     return None
 
-def tell_answers(user_msg):
-    if 'story' in user_msg:
-        return choice([
-            "At the edge of the village lived an old man with a big cat. Every morning, they would go for a long walk in the fields, and no one knew where they were going.",
-            "Once there was a fisherman who always came back from the sea with big fish. One day he returned empty-handed and said, 'Today the fish were busy with stories!'"
 
-        ])
+def tell_answers(user_msg):
+    if "story" in user_msg:
+        try:
+            cur_path = os.path.dirname(__file__)
+            new_path = os.path.relpath('..\\content\\stories.txt', cur_path)
+            with open(new_path, 'r') as file:
+                stories = file.read().split('\n\n')
+                num_of_stories = len(stories)
+                story_number = random.randint(1, num_of_stories)
+                story = stories[story_number - 1]
+                return story
+
+        except Exception as e:
+            return None
 
     if 'joke' in user_msg:
-        return choice([
-            "Once there was a turtle who wanted to fly in the sky, but he realized he didn’t have wings.",
-            "Two balloons are flying in the desert, one says to the other: 'Sssss!'.",
-            "What do you call a camel that tells jokes? A comedian!",
-            "Why couldn't the parrot cross the road? Because he always repeated the same thing!",
-            "Once a mouse met a camel and said: 'Wow, how do you manage to drink so much water?'"
-        ])
+        try:
+            cur_path = os.path.dirname(__file__)
+            new_path = os.path.relpath('..\\content\\jokes.txt', cur_path)
+            with open(new_path, 'r') as file:
+                jokes = file.read().split('\n\n')
+                num_of_jokes = len(jokes)
+                joke_number = random.randint(1, num_of_jokes)
+                joke = jokes[joke_number - 1]
+                return joke
 
-    return 'Ask me to tell a story or a joke'
+        except Exception as e:
+            return None
+
 
 def want_answers(user_msg):
     if 'want to talk' in user_msg:
@@ -255,6 +272,7 @@ def want_answers(user_msg):
         return 'I don’t know!'
 
     return None
+
 
 def you_answers(user_msg):
     if 'what are you doing' in user_msg:
@@ -275,17 +293,19 @@ def you_answers(user_msg):
     if 'you are dumb' in user_msg or 'are so dumb' in user_msg:
         return 'I’m sorry'
 
-    if 'you are foolish' in user_msg or 'you are so foolish' in user_msg :
+    if 'you are foolish' in user_msg or 'you are so foolish' in user_msg:
         return 'Please calm down'
 
     return None
+
 
 def what_answers(user_msg):
     if 'is this bot' in user_msg:
         return 'Me??'
 
-    if any(question in user_msg for question in ['whats happening', 'whats up','whats going on', 'whats going on']):
-        return choice(['All good, how about you?', 'Okay, how are you?', 'Fine, how about you?', 'I’m fine, how about you?'])
+    if any(question in user_msg for question in ['whats happening', 'whats up', 'whats going on', 'whats going on']):
+        return choice(
+            ['All good, how about you?', 'Okay, how are you?', 'Fine, how about you?', 'I’m fine, how about you?'])
 
     if 'what time' in user_msg:
         now = datetime.now()
@@ -303,22 +323,19 @@ def what_answers(user_msg):
 
     return None
 
+
 def i_answers(user_msg):
-
-
     if any(sentence in user_msg for sentence in ['m good', 'feel good', 'm okay']):
         return choice(['I am happy to hear that!', 'yay'])
 
-    if any(sentence in user_msg for sentence in [ 'not okay', 'feel bad']):
+    if any(sentence in user_msg for sentence in ['not okay', 'feel bad']):
         return choice(['sorry..', 'I am sorry to hear that.'])
 
     if 'i want' in user_msg:
         return 'maybe i want what you want.'
 
-
     if 'i feel like' in user_msg:
         return 'I feel like a cat'
-
 
     if 'i dont feel' in user_msg:
         return 'Okay.'
@@ -326,8 +343,8 @@ def i_answers(user_msg):
     if 'i dont care' in user_msg:
         return 'Okay.'
 
-
     return None
+
 
 def i_have_answers(user_msg):
     if any(question in user_msg for question in ['i have a lesson', 'i have an event', 'i have a trip']):
@@ -347,6 +364,7 @@ def i_have_answers(user_msg):
 
     return None
 
+
 def i_dont_have_answers(user_msg):
     if 'i have no energy' in user_msg:
         return 'too bad'
@@ -357,6 +375,7 @@ def i_dont_have_answers(user_msg):
 
     return None
 
+
 def day_answers(user_msg):
     if 'great day' in user_msg:
         return 'i like great days!'
@@ -366,6 +385,31 @@ def day_answers(user_msg):
         return 'i like wonderful days!'
 
     return None
+
+
+def help_answers(user_msg):
+    if user_msg == "i need help":
+        return "How can I help?"
+
+    # patterns
+    patterns = [
+        r"i need help(?: with (.+))?",
+        r"i want help(?: with (.+))?",
+        r"can you help(?: me)?(?: with (.+))?",
+        r"please help(?: me)?(?: with (.+))?",
+        r"someone help(?: me)?(?: with (.+))?",
+        r"help(?: me)?(?: with (.+))?",
+        r"i need assistance(?: with (.+))?",
+        r"i could use some help(?: with (.+))?",
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, user_msg)
+        if match:
+            context = match.group(1) if match.lastindex else None
+            if context:
+                return f"I see you need help with {context}. If there's anything I can assist you with, just let me know!"
+
 
 def choose_random_option(user_msg, phrase):
     if phrase in user_msg and "or" in user_msg:
@@ -379,4 +423,19 @@ def choose_random_option(user_msg, phrase):
         return option
 
     return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
