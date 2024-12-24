@@ -4,5 +4,3 @@ python-dotenv
 datetime
 pymongo
 pytest
-random
-os
