@@ -1,10 +1,5 @@
-import os
-import random
-import re
 from random import choice
 from datetime import datetime
-from symbol import continue_stmt
-
 import requests
 from os import getenv
 from dotenv import load_dotenv
@@ -22,10 +17,11 @@ def english_answers(user_msg, username):
     answer = None
 
     if using_mongo_db == 'using mongo db':
-        if 'bot' in user_msg and any(word in user_msg for word in ['db menu', 'obsessed', 'list', 'bot create', 'bot show', 'bot delete', 'bot add']):
-            answer = db_user_commands.db_commands(user_msg, username)
+        if 'bot' in user_msg and any(word in user_msg for word in ['db menu','obsessed','list','bot create', 'bot show','bot delete', 'bot add']):
+            answer = db_user_commands.db_commands(user_msg,username)
             if answer and not answer.startswith("Error"):
                 return answer
+
 
     if 'bot' in user_msg:
         answer = general_words_related_to_bot_answers(user_msg)
@@ -42,7 +38,7 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    if 'who' in user_msg:
+    if 'who' in user_msg :
         answer = who_answers(user_msg)
         if answer:
             return answer
@@ -52,7 +48,7 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    if 'i' in user_msg:
+    if 'i' in user_msg  : #for db special obsessed command:
         answer = i_answers(user_msg)
         if answer:
             return answer
@@ -77,13 +73,14 @@ def english_answers(user_msg, username):
         if answer:
             return answer
 
-    if 'should i' in user_msg or 'what should' in user_msg:
-        answer = choose_random_option(user_msg, 'should i')
-        if answer:
-            return answer
+    if 'should i' in user_msg or 'what should' in user_msg :
 
-    if 'help' in user_msg:
-        answer = help_answers(user_msg)
+        if 'should i' in user_msg:
+            answer = choose_random_option(user_msg, 'should i')
+
+        if 'what should' in user_msg:
+            answer = choose_random_option(user_msg, 'should i')
+
         if answer:
             return answer
 
@@ -91,70 +88,69 @@ def english_answers(user_msg, username):
     if answer:
         return answer
 
+    # If no fitting answer is found but the user message still includes 'bot'
     if 'bot' in user_msg:
-        return choice(['Ask a question or be more specific.', 'Did you call me?'])
+        return choice(['Ask a question or be more specific', 'Did you call me?'])
 
     return None
 
+#general common words that the bot will answer to only if the word 'bot' is mentioned
 def general_words_related_to_bot_answers(user_msg):
 
-    if any(question in user_msg for question in ['what about you', 'how are you', 'hru', 'how r u']):
-        return choice(['All good, how about you?', 'Okay, how about you?', 'Fine, and you?'])
-
-    if "menu" in user_msg:
-        return f"My name is {bot_name}! Feel free to ask me anything and discover yourself what I can answer! "
+    if any(question in user_msg for question in ['what about you', 'how are you','hru', 'how r u' ]):
+        return choice(['All good, how about you?', 'Okay, how are you?', 'Fine, how about you?', 'I’m fine, how about you?'])
 
     if 'your name' in user_msg:
-        return f'My name is {bot_name}!'
+        return f'my name is {bot_name} !'
 
     if 'you ready' in user_msg:
-        return 'I am ready!'
+        return 'im ready!'
 
     if 'do you love' in user_msg:
-        return 'I love many things.'
+        return 'I love many things'
 
     if 'like' in user_msg:
-        return 'Well... I know I like you!'
+        return 'well...i know i like you...'
 
     if 'why' in user_msg:
-        return 'Because it is what it is.'
+        return 'it is what it is'
 
     if 'no' in user_msg:
-        return 'Alright then.'
+        return 'then not'
 
     if 'yes' in user_msg or 'ok' in user_msg:
-        return choice(['Good.', 'Okay.', 'Alright.'])
+        return choice(['Good', 'Okay', 'Alright'])
 
     if 'what' in user_msg:
-        return 'You heard me.'
+        return 'you have heard me.'
 
     if 'good' in user_msg:
-        return 'Good!'
+        return 'Good'
 
     if 'bad bot' in user_msg:
-        return 'I don’t care what people say about bots. We are great!'
+        return 'I don’t care what people say about bots. we are great'
 
     if 'explain' in user_msg:
-        return "I don’t have an explanation for that."
+        return "I don’t have an explanation for you're problems or smth!"
 
     if 'go to sleep' in user_msg or 'shut up' in user_msg:
-        return 'I don’t want to.'
+        return 'I don’t want to'
 
     if 'stop' in user_msg:
-        return 'No.'
+        return 'No'
 
     if 'thanks' in user_msg:
-        return "You’re welcome."
+        return "you're welcome"
 
     if 'bot' == user_msg:
-        return 'What?'
+        return "what"
 
     return None
 
 def general_answers(user_msg, username):
 
     if any(greeting in user_msg for greeting in ['hi', 'hello', 'greetings', 'hey']):
-        return choice(['Hi', 'Hello', 'Greetings', 'Hey']) + ' ' + username
+        return choice(['hi', 'hello', 'greetings', 'hey']) + ' ' + username
 
     if 'my name is' in user_msg:
         name = user_msg.split("my name is ")[-1]
@@ -164,38 +160,38 @@ def general_answers(user_msg, username):
         answer = weather_commands.weather_command_answer(user_msg)
         if answer and not answer.startswith("Error"):
             return answer
-        elif user_msg in ["what is the weather", "whats the weather"]:
-            return "Ask the same question, but with the city name."
+        elif user_msg == "what is the weather" or user_msg == "whats the weather":
+            return "Ask the same question, but with the city name"
 
     if 'bye' in user_msg:
-        return 'Bye!'
+            return 'bye'
 
     if 'great' in user_msg:
         return 'Okay.'
 
     if 'nitro' in user_msg:
-        return 'I want Nitro!'
+        return 'i want nitro!!'
 
     if 'ok' in user_msg:
-        return 'Okay.'
+        return 'Ok'
 
     if 'thank you for asking' in user_msg:
-        return 'You’re welcome.'
+        return 'You’re welcome'
 
     if 'thanks for asking' in user_msg:
-        return 'You’re welcome.'
+        return 'You’re welcome'
 
     if 'thank you bot' in user_msg:
-        return 'You’re welcome.'
+        return 'You’re welcome'
 
     if 'welcome bot' in user_msg:
-        return 'Thank you.'
+        return 'Thank you'
 
     if 'welcome' in user_msg:
-        return 'Welcome!'
+        return 'Welcome'
 
     if 'hate' in user_msg:
-        return 'No need to hate.'
+        return 'no need to hate'
 
     if 'come in' in user_msg:
         return 'Can I come too?'
@@ -203,7 +199,9 @@ def general_answers(user_msg, username):
     if 'bot' == user_msg:
         return 'Enough, ' + username
 
+
     return None
+
 
 
 def who_answers(user_msg):
@@ -222,35 +220,23 @@ def who_answers(user_msg):
     return None
 
 def tell_answers(user_msg):
+    if 'story' in user_msg:
+        return choice([
+            "At the edge of the village lived an old man with a big cat. Every morning, they would go for a long walk in the fields, and no one knew where they were going.",
+            "Once there was a fisherman who always came back from the sea with big fish. One day he returned empty-handed and said, 'Today the fish were busy with stories!'"
 
-    if "story" in user_msg:
-        try:
-            cur_path = os.path.dirname(__file__)
-            new_path = os.path.relpath('..\\content\\stories.txt', cur_path)
-            with open(new_path, 'r') as file:
-                stories = file.read().split('\n\n')
-                num_of_stories = len(stories)
-                story_number = random.randint(1, num_of_stories)
-                story = stories[story_number - 1]
-                return story
-
-        except Exception as e:
-            return None
+        ])
 
     if 'joke' in user_msg:
-        try:
-            cur_path = os.path.dirname(__file__)
-            new_path = os.path.relpath('..\\content\\jokes.txt', cur_path)
-            with open(new_path, 'r') as file:
-                jokes = file.read().split('\n\n')
-                num_of_jokes = len(jokes)
-                joke_number = random.randint(1, num_of_jokes)
-                joke = jokes[joke_number - 1]
-                return joke
+        return choice([
+            "Once there was a turtle who wanted to fly in the sky, but he realized he didn’t have wings.",
+            "Two balloons are flying in the desert, one says to the other: 'Sssss!'.",
+            "What do you call a camel that tells jokes? A comedian!",
+            "Why couldn't the parrot cross the road? Because he always repeated the same thing!",
+            "Once a mouse met a camel and said: 'Wow, how do you manage to drink so much water?'"
+        ])
 
-        except Exception as e:
-            return None
-
+    return 'Ask me to tell a story or a joke'
 
 def want_answers(user_msg):
     if 'want to talk' in user_msg:
@@ -378,34 +364,6 @@ def day_answers(user_msg):
         return 'i like good days!'
     if 'wonderful' in user_msg:
         return 'i like wonderful days!'
-
-    return None
-
-
-def help_answers(user_msg):
-
-    if user_msg == "i need help":
-        return "How can I help?"
-
-    #patterns
-    patterns = [
-        r"i need help(?: with (.+))?",
-        r"i want help(?: with (.+))?",
-        r"can you help(?: me)?(?: with (.+))?",
-        r"please help(?: me)?(?: with (.+))?",
-        r"someone help(?: me)?(?: with (.+))?",
-        r"help(?: me)?(?: with (.+))?",
-        r"i need assistance(?: with (.+))?",
-        r"i could use some help(?: with (.+))?",
-    ]
-
-
-    for pattern in patterns:
-        match = re.search(pattern, user_msg)
-        if match:
-            context = match.group(1) if match.lastindex else None
-            if context:
-                return f"I see you need help with {context}. If there's anything I can assist you with, just let me know!"
 
     return None
 

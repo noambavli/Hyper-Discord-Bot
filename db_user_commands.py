@@ -69,8 +69,9 @@ def get_db_menu():
         Database Menu:
         bot create list <list name>
         bot delete list <list name>
-        add <item> to <list name>
+        bot add <item> to <list name>
         delete <item> from <list name>
+        bot show <list name>
         bot i am obsessed with you
         bot im not obsessed with you
         bot who is obsessed with you
