@@ -1,4 +1,4 @@
-# 🌟 **Fun Discord Bot** 🌟  
+# 🌟 **Smart and fun Discord Bot** 🌟  
 `discord bot` `discord` `bot` `fun bot` `smart` `Hebrew Discord Bot` `Hebrew Bot` `Discord` `Hebrew and English Discord Bot` 
 
 ![Discord](https://img.shields.io/badge/Discord-Bot-blue)
@@ -6,14 +6,16 @@
 ![Smart](https://img.shields.io/badge/Smart-Bot-green)
 ![Hebrew](https://img.shields.io/badge/Hebrew-Bot-orange)
 ![Language](https://img.shields.io/badge/Language-Hebrew%20%26%20English-red)
-### A conversational Discord bot designed to fit perfectly into your server.
+### A smart conversational Discord bot designed to fit perfectly into your server.
 
 ---
 
 - 🗨️ **Talks Smart**: Handles conversations and responds well to various situations.  
   - Features **tree-based answers** for **fast response times**.  
   - Easily customizable to suit your needs—recode it however you like!  
-- 📚 **DB functionality for the Fun**: Lets users add **notes**, create **lists**, and handle database functionality for server-wide fun (mongoDB).  
+- 📚 **DB functionality for the Fun**: Lets users add **notes**, create **lists**, and handle database functionality for server-wide fun (mongoDB).
+(use your cluster url. you can disable the db functionality by the is_using_mongodb env var)
+
 - 🎭 **All the Basics**: Tells **jokes**, **stories**,  **weather updates**, etc .  
 - 🌍 **Multilingual**: Built for **English**, with added **Hebrew support** , great for Israeli servers 🇮🇱. (you can disable it easily in responses.py)  
 
@@ -21,7 +23,8 @@
 
 #### **Deployment**  
 Deploying is easy with **Docker** and **Railway**:  
-- Use the provided **Docker configuration** for quick setup.  
+- Use the provided **Docker configuration** for quick setup.
+- use .env for bot token , bot name, secrets etc
 - Highly recommend **Railway** for hassle-free deployment ([check them out](https://railway.app)).  
 
 ---
