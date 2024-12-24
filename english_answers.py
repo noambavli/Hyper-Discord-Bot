@@ -91,6 +91,7 @@ def english_answers(user_msg, username):
     if answer:
         return answer
 
+
     if "help" in user_msg:
         answer = help_answers(user_msg)
         if answer:
