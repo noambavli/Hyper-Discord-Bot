@@ -2,7 +2,6 @@
 `discord bot` `discord` `bot` `fun bot` `smart` `Hebrew Discord Bot` `Hebrew Bot` `Discord` `Hebrew and English Discord Bot` 
 
 ![Discord](https://img.shields.io/badge/Discord-Bot-blue)
-![Fun](https://img.shields.io/badge/Fun-Bot-yellow)
 ![Smart](https://img.shields.io/badge/Smart-Bot-green)
 ![Hebrew](https://img.shields.io/badge/Hebrew-Bot-orange)
 ![Language](https://img.shields.io/badge/Language-Hebrew%20%26%20English-red)
