@@ -11,17 +11,17 @@
 ---
 
 - 🗨️ **Talks Smart**: Handles conversations and responds well to various situations.  
-  - Features **tree-based answers** for **fast response times**.  
+  - Features tree-based answers for smart responses (and fast response times)  
   - Easily customizable to suit your needs - recognize the patterns and recode it however you like 
-- 📚 **DB functionality for the Fun**: Lets users add notes, create lists, and handle database functionality for server-wide fun (mongo, use your cluster url. you can disable the db functionality by the is_using_mongodb env var)
+-  **DB functionality for the Fun**: Lets users add notes, create lists, and handle database functionality for server-wide fun (mongo, use your cluster url. you can disable the db functionality by the is_using_mongodb env var)
 
-- 🎭 **All the Basics**: Tells **jokes**, **stories**,  **weather updates**, etc .  
+- 🎭 **All the Basics**: Tells jokes**, stories,  weather updates, etc .  
 - 🌍 **Multilingual**: Built for **English**, with added **Hebrew support** , great for Israeli servers 🇮🇱. ( #you can disable it easily in responses.py )  
 
 ---
 
 #### **Deployment**  
-Deploying is easy with **Docker** and **Railway**:  
+Deploying is easy with Docker and Railway**:  
 - Use the provided Docker configuration and deploy.yml
   for quick setup.
 - use .env for bot token , bot name, secrets etc
