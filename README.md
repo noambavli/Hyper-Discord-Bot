@@ -9,7 +9,7 @@
 
 ---
 
-- 🗨️ **Talks Smart**: Handles conversations and responds well to various situations.  
+- 🗨️ **Smart**: Handles conversations and responds well to various situations.  
   - Features tree-based answers for smart responses (and fast response times)  
   - Easily customizable to suit your needs - recognize the patterns and recode it however you like 
 -  **DB functionality for the Fun**: Lets users add notes, create lists, and handle database functionality for server-wide fun (mongo, use your cluster url. you can disable the db functionality by the is_using_mongodb env var)
@@ -29,7 +29,7 @@ Deploying is easy with Docker and Railway**:
 ---
 
 notes:
-- The input is first converted to lowercase and all regex are removed before generating answer.
+- The input is first converted to lowercase and all regexes are removed before generating answer.
 
 - The bot doesn’t have a traditional menu (except the db functionality , you can see menu by saying "bot db menu"),
 as it's mainly focused on conversational interaction. For more rare commands, such as asking about the weather, the bot doesn’t require the word "bot" to be included in the sentence, since these requests are less common in everyday conversation and probably directed to the bot. However, for more common responses, the bot will only trigger response if the word "bot" is present in the sentence.
